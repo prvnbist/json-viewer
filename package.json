@@ -1,0 +1,27 @@
+{
+  "name": "json-viewer",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@heroicons/react": "1.0.5",
+    "@monaco-editor/react": "4.3.1",
+    "lodash": "4.17.21",
+    "next": "latest",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "license": "MIT",
+  "keywords": [
+    "json",
+    "app",
+    "reader",
+    "reactjs",
+    "tailwindcss",
+    "nextjs"
+  ],
+  "description": "An app to read json data in an interactive format built with react and tailwindcss."
+}
