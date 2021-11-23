@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import Editor from '@monaco-editor/react'
+import MonacoEditor from '@monaco-editor/react'
 
 import * as Icons from '@heroicons/react/solid'
 
@@ -38,6 +38,18 @@ export default function IndexPage() {
       ],
    })
 
+   return (
+      <div className="h-full gap-5 grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-2">
+         <Editor json={json} setJson={setJson} setStatus={setStatus} />
+         <JSONViewer json={json} status={status} />
+      </div>
+   )
+}
+
+const Editor = ({ json, setJson, setStatus }) => {
+   const [config, setConfig] = React.useState({
+      isPrettified: true,
+   })
    function handleEditorChange(value, event) {
       setJson(JSON.parse(value))
    }
@@ -50,29 +62,48 @@ export default function IndexPage() {
       setStatus('LOADING')
    }
 
-   function handleEditorValidation(markers) {
-      // model markers
-      // markers.forEach(marker => console.log('onValidate:', marker.message));
-   }
-
    return (
-      <div className="h-full gap-5 grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-2">
-         <section className="h-full overflow-hidden rounded-lg">
-            <Editor
-               height="100%"
+      <section>
+         <header className="space-x-1 flex items-center pl-1 h-10 mb-3 bg-white border border-gray-200 w-full rounded-lg">
+            <button
+               title="Uglify"
+               onClick={() =>
+                  setConfig(config => ({
+                     ...config,
+                     isPrettified: false,
+                  }))
+               }
+               className="h-7 w-7 flex items-center justify-center rounded hover:bg-gray-100"
+            >
+               <Icon.Shrink className="stroke-current text-gray-500" />
+            </button>
+            <button
+               title="Prettify"
+               onClick={() =>
+                  setConfig(config => ({
+                     ...config,
+                     isPrettified: true,
+                  }))
+               }
+               className="h-7 w-7 flex items-center justify-center rounded hover:bg-gray-100"
+            >
+               <Icon.Extend className="stroke-current text-gray-500" />
+            </button>
+         </header>
+         <main id="editor__container" className="overflow-hidden rounded-lg">
+            <MonacoEditor
                width="100%"
+               height="100%"
                defaultValue="{}"
                loading={<Loader />}
                defaultLanguage="json"
                onChange={handleEditorChange}
                onMount={handleEditorDidMount}
                beforeMount={handleEditorWillMount}
-               onValidate={handleEditorValidation}
-               value={JSON.stringify(json, null, 3)}
+               value={JSON.stringify(json, null, config.isPrettified ? 2 : 0)}
             />
-         </section>
-         <JSONViewer json={json} status={status} />
-      </div>
+         </main>
+      </section>
    )
 }
 
@@ -84,16 +115,18 @@ const JSONViewer = ({ json = {}, status }) => {
          </div>
       )
    return (
-      <div className="h-full overflow-y-auto space-y-1">
-         {_.map(json, (value, key) => (
-            <Renderer
-               key={key}
-               field={key}
-               value={value}
-               type={findType(value)}
-            />
-         ))}
-      </div>
+      <section>
+         <div className="h-full overflow-y-auto space-y-1">
+            {_.map(json, (value, key) => (
+               <Renderer
+                  key={key}
+                  field={key}
+                  value={value}
+                  type={findType(value)}
+               />
+            ))}
+         </div>
+      </section>
    )
 }
 
@@ -202,18 +235,18 @@ const Loader = () => {
                y2="23.865%"
                id="a"
             >
-               <stop stop-color="gray" stop-opacity="0" offset="0%" />
-               <stop stop-color="gray" stop-opacity=".631" offset="63.146%" />
-               <stop stop-color="gray" offset="100%" />
+               <stop stopColor="gray" stopOpacity="0" offset="0%" />
+               <stop stopColor="gray" stopOpacity=".631" offset="63.146%" />
+               <stop stopColor="gray" offset="100%" />
             </linearGradient>
          </defs>
-         <g fill="none" fill-rule="evenodd">
+         <g fill="none" fillRule="evenodd">
             <g transform="translate(1 1)">
                <path
                   d="M36 18c0-9.94-8.06-18-18-18"
                   id="Oval-2"
                   stroke="url(#a)"
-                  stroke-width="2"
+                  strokeWidth="2"
                >
                   <animateTransform
                      attributeName="transform"
@@ -238,4 +271,33 @@ const Loader = () => {
          </g>
       </svg>
    )
+}
+
+const Icon = {
+   Shrink: ({ size = 20 }) => (
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         width={size}
+         height={size}
+         viewBox="0 0 16 16"
+      >
+         <path
+            fill="#627583"
+            d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm10.646 2.146a.5.5 0 0 1 .708.708L11.707 8l1.647 1.646a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2zM2 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+         />
+      </svg>
+   ),
+   Extend: ({ size = 20 }) => (
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         width={size}
+         height={size}
+         viewBox="0 0 16 16"
+      >
+         <path
+            fill="#627583"
+            d="M2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm.646 2.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.293 8 2.646 6.354a.5.5 0 0 1 0-.708zM7 6.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
+         />
+      </svg>
+   ),
 }
