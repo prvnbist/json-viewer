@@ -2,22 +2,24 @@ import React from 'react'
 import MonacoEditor from '@monaco-editor/react'
 
 import * as Icon from '../icons'
+import { useViewer } from '../store'
 import { Loader } from '../components'
 
-export const Editor = ({ json, setJson, setStatus }) => {
+export const Editor = () => {
+   const { json, dispatch } = useViewer()
    const [config, setConfig] = React.useState({
       isPrettified: true,
    })
-   function handleEditorChange(value, event) {
-      setJson(JSON.parse(value))
+   function handleEditorChange(value) {
+      dispatch({ type: 'SET_JSON', payload: JSON.parse(value) })
    }
 
-   function handleEditorDidMount(editor, monaco) {
-      setStatus('LOADED')
+   function handleEditorDidMount() {
+      dispatch({ type: 'SET_STATUS', payload: 'LOADED' })
    }
 
-   function handleEditorWillMount(monaco) {
-      setStatus('LOADING')
+   function handleEditorWillMount() {
+      dispatch({ type: 'SET_STATUS', payload: 'LOADING' })
    }
 
    return (
