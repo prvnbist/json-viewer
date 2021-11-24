@@ -21,6 +21,12 @@ class MyDocument extends Document {
                   rel="stylesheet"
                />
                <script src="https://cdn-tailwindcss.vercel.app/"></script>
+               <script
+                  async
+                  defer
+                  data-website-id="a50162c9-6811-4554-813a-45aeaa9a4742"
+                  src="https://x-umami.vercel.app/umami.js"
+               ></script>
             </Head>
             <body className="p-5 bg-[#ECECF4]">
                <Main />
