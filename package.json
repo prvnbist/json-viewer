@@ -1,27 +1,41 @@
 {
-   "name": "json-viewer",
-   "version": "0.1.1",
+   "name": "jsonvi",
+   "version": "0.1.0",
+   "private": true,
    "scripts": {
-      "dev": "next",
+      "dev": "next dev",
       "build": "next build",
-      "start": "next start"
+      "start": "next start",
+      "lint": "next lint",
+      "typecheck": "tsc",
+      "prettier:check": "prettier --check \"**/*.{ts,tsx}\"",
+      "prettier:write": "prettier --write \"**/*.{ts,tsx}\"",
+      "precommit": "yarn prettier:write && yarn lint && yarn typecheck"
    },
    "dependencies": {
-      "@heroicons/react": "1.0.5",
-      "@monaco-editor/react": "4.3.1",
-      "lodash": "4.17.21",
-      "next": "latest",
-      "react": "17.0.2",
-      "react-dom": "17.0.2"
+      "@mantine/core": "^7.5.1",
+      "@mantine/hooks": "^7.5.1",
+      "@monaco-editor/react": "^4.6.0",
+      "@tabler/icons-react": "^2.47.0",
+      "monaco-editor": "^0.46.0",
+      "next": "14.1.0",
+      "react": "^18",
+      "react-dom": "^18",
+      "to-json-schema": "^0.2.5",
+      "zustand": "^4.5.0"
    },
-   "license": "MIT",
-   "keywords": [
-      "json",
-      "app",
-      "reader",
-      "reactjs",
-      "tailwindcss",
-      "nextjs"
-   ],
-   "description": "An app to read json data in an interactive format built with react and tailwindcss."
+   "devDependencies": {
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "@types/to-json-schema": "^0.2.4",
+      "eslint": "^8",
+      "eslint-config-next": "14.1.0",
+      "eslint-config-prettier": "^9.1.0",
+      "postcss": "^8.4.33",
+      "postcss-preset-mantine": "^1.13.0",
+      "postcss-simple-vars": "^7.0.1",
+      "prettier": "^3.2.4",
+      "typescript": "^5"
+   }
 }
