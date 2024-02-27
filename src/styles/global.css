@@ -1,0 +1,35 @@
+.mantine_nested_table {
+   border: none !important;
+   background-color: var(--mantine-color-dark-6) !important;
+}
+
+.mantine_nested_table thead {
+   background: var(--mantine-color-body);
+}
+
+.mantine-Table-th,
+.mantine-Table-td {
+   height: 28px;
+   font-size: 13px;
+   white-space: nowrap;
+   padding-top: 0 !important;
+   padding-bottom: 0 !important;
+}
+
+.mantine-Table-th:after,
+.mantine-Table-th:before {
+   content: '';
+   position: absolute;
+   left: 0;
+   width: 100%;
+}
+
+.mantine-Table-th:before {
+   top: -1px;
+   border-top: calc(0.0625rem * var(--mantine-scale)) solid var(--_table-border-color);
+}
+
+.mantine-Table-th:after {
+   bottom: 0px;
+   border-bottom: calc(0.0625rem * var(--mantine-scale)) solid var(--_table-border-color);
+}
