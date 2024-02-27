@@ -1,5 +1,14 @@
-## JSON Viewer
+## JSONVi
 
-![App Screenshot](https://res.cloudinary.com/prvnbist/image/upload/v1637509955/Screenshot_1_jg8clo.png)
+![App Screenshot](/public/schema_view.png)
 
-An app to read json data in an interactive format built with react and tailwindcss and monacor editor.
+A dead simple JSON Viewer with following features:
+1. JSON Schema
+2. Table View
+
+### Screenshots
+
+1. Schema View
+   ![Schema View](/public/schema_view.png)
+2. Table View
+   ![Table View](/public/table_view.png)

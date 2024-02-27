@@ -1,0 +1,35 @@
+.container {
+   gap: 16px;
+   display: grid;
+   height: 100vh;
+   padding: 16px;
+   grid-template-columns: 480px 1fr;
+}
+
+.container > aside,
+.container > main {
+   gap: 16px;
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: 40px 1fr;
+}
+
+.container > aside > header,
+.container > aside > main,
+.container > main > header,
+.container > main > main {
+   border-radius: 4px;
+   background-color: var(--mantine-color-dark-6);
+}
+
+.container > aside > header {
+   gap: 4px;
+   display: flex;
+   padding-left: 6px;
+   align-items: center;
+}
+
+.container > aside > main,
+.container > main > main {
+   overflow: hidden;
+}
