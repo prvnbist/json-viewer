@@ -8,29 +8,30 @@ import '../styles/global.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-   title: 'JSON',
-   description: 'JSON viewer',
+	title: 'JSON',
+	description: 'JSON viewer',
 }
 
 export default function RootLayout({
-   children,
+	children,
 }: Readonly<{
-   children: React.ReactNode
+	children: React.ReactNode
 }>) {
-   return (
-      <html lang="en">
-         <head>
-            <ColorSchemeScript defaultColorScheme="dark" />
-         </head>
-         <body className={inter.className}>
-            <MantineProvider
-               defaultColorScheme="dark"
-               theme={{
-                  fontFamily: inter.style.fontFamily,
-               }}>
-               {children}
-            </MantineProvider>
-         </body>
-      </html>
-   )
+	return (
+		<html lang="en">
+			<head>
+				<ColorSchemeScript defaultColorScheme="dark" />
+			</head>
+			<body className={inter.className}>
+				<MantineProvider
+					defaultColorScheme="dark"
+					theme={{
+						fontFamily: inter.style.fontFamily,
+					}}
+				>
+					{children}
+				</MantineProvider>
+			</body>
+		</html>
+	)
 }
