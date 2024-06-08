@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from 'react'
 import toJsonSchema from 'to-json-schema'
-
-import { Box, ScrollArea, Tabs } from '@mantine/core'
 import { Editor } from '@monaco-editor/react'
+
+import { Box, Center, ScrollArea, Tabs, Text } from '@mantine/core'
 
 import useGlobalStore from '@/state'
 import DataTable from './Table'
@@ -83,8 +83,16 @@ const Viewer = () => {
 				</Tabs>
 			</header>
 			<main>
-				{tab === 'SCHEMA' && VIEWS[tab](schema)}
-				{tab === 'TABLE' && VIEWS[tab](json, schema)}
+				{!content ? (
+					<Center h="100%">
+						<Text>Enter JSON to generate {tab === 'SCHEMA' ? 'schema.' : 'table.'}</Text>
+					</Center>
+				) : (
+					<>
+						{tab === 'SCHEMA' && VIEWS[tab](schema)}
+						{tab === 'TABLE' && VIEWS[tab](json, schema)}
+					</>
+				)}
 			</main>
 		</main>
 	)

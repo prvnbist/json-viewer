@@ -1,5 +1,5 @@
 import MonacoEditor from '@monaco-editor/react'
-import { IconClipboard, IconSparkles } from '@tabler/icons-react'
+import { IconClearAll, IconClipboard, IconSparkles, IconTrash } from '@tabler/icons-react'
 
 import { ActionIcon, CopyButton } from '@mantine/core'
 
@@ -44,6 +44,15 @@ const Editor = () => {
 						</ActionIcon>
 					)}
 				</CopyButton>
+				<ActionIcon
+					color="gray"
+					title="Clear"
+					variant="subtle"
+					onClick={() => setContent('')}
+					disabled={!isEditorMounted}
+				>
+					<IconTrash size={18} />
+				</ActionIcon>
 			</header>
 			<main>
 				<MonacoEditor
