@@ -69,7 +69,7 @@ const Viewer = () => {
 	}, [json])
 
 	return (
-		<main>
+		<main id="viewer">
 			<header>
 				<Tabs
 					value={tab}

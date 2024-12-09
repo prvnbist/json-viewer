@@ -1,0 +1,42 @@
+.container {
+	padding: 16px;
+	height: 100dvh;
+}
+
+#resize_handle {
+	width: 16px;
+	place-content: center;
+}
+
+#editor,
+#viewer {
+	gap: 16px;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 40px 1fr;
+}
+
+#editor > header,
+#editor > main,
+#viewer > header,
+#viewer > main {
+	border-radius: 4px;
+	background-color: var(--mantine-color-dark-6);
+}
+
+#editor header {
+	gap: 4px;
+	display: flex;
+	padding-left: 6px;
+	align-items: center;
+}
+
+#editor > main,
+#viewer > main {
+	overflow: hidden;
+}
+
+#editor > main {
+	height: 100%;
+}

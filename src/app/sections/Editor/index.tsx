@@ -20,7 +20,7 @@ const Editor = () => {
 	])
 	const [content, setContent] = useGlobalStore(state => [state.content, state.setContent])
 	return (
-		<aside>
+		<aside id="editor">
 			<header>
 				<ActionIcon
 					color="gray"
